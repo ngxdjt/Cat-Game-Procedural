@@ -46,6 +46,7 @@ while True:
         pass
     elif option == '5':
         print(cat_attributes)
+        pass
     else:
         pass
     
