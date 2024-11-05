@@ -2,22 +2,21 @@ cat_attributes = {
     "intelligence": 20,
     "energy": 15,
     "weight": 20,
-    # change the inital values above
 }
 
 print("Welcome to my cat game!")
 
-# Take the user inputs for name and colour:
 name = input("Enter name: ")
 
 colours = ["Black","Ginger","White"]
 colour = input("Enter the colour of your cat: ")
 while colour not in colours:
     print("Invalid colour")
+    print(f"Valid colours: {colours}")
     colour = input("Enter the colour of your cat: ")
 
 while True:
-    option = input("What would you like to do? 1. Play with your cat 2. Train your cat 3. Feed your cat 4. Put your cat to sleep 5. Show stats ")
+    option = input("\nWhat would you like to do? \n1. Play with your cat \n2. Train your cat \n3. Feed your cat \n4. Put your cat to sleep \n5. Show stats\n")
 
     if option == '1':
         cat_attributes["intelligence"] -= 5
@@ -25,17 +24,20 @@ while True:
         cat_attributes["weight"] -= 1
         pass
     elif option == '2':
-        cat_attributes["intelligence"] += 6
-        cat_attributes["energy"] -= 2
-        cat_attributes["weight"] -= 3
+        if cat_attributes["energy"] >= 8:
+            cat_attributes["intelligence"] += 10
+            cat_attributes["energy"] -= 6
+            cat_attributes["weight"] -= 5
+        else:
+            print("Your cat is too tired to train")
         pass
     elif option == '3':
-        cat_attributes["intelligence"] += 1
+        cat_attributes["intelligence"] += 2
         cat_attributes["energy"] += 2
-        cat_attributes["weight"] += 4
+        cat_attributes["weight"] += 5
         pass
     elif option == '4':
-        if cat_attributes["energy"] < 20:
+        if cat_attributes["energy"] <= 20:
             cat_attributes["intelligence"] -= 1
             cat_attributes["energy"] += 10
             cat_attributes["weight"] += 3
@@ -46,7 +48,8 @@ while True:
         print(cat_attributes)
     else:
         pass
-
+    
+    print("")
     if cat_attributes['energy'] <= 5:
         print("Your cat died due to lack of energy")
         break
